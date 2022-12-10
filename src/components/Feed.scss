@@ -1,0 +1,25 @@
+table.table-hover,
+table {
+  >tbody {
+    >tr.downloaded {
+      background-color: #333;
+      >* {
+        color: #aaa;
+      }
+
+      &:hover {
+        >* {
+          color: #ccc;
+        }
+
+        a {
+          color: #ccc;
+        }
+      }
+
+      a {
+        color: #aaa;
+      }
+    }
+  }
+}

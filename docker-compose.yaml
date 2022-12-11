@@ -28,6 +28,16 @@ services:
       # HASURA_GRAPHQL_CONSOLE_ASSETS_DIR: /srv/console-assets
       ## uncomment next line to set an admin secret
       # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+  app:
+    build:
+      args:
+        context: .
+        dockerfile: Dockerfile
+    ports:
+    - "3001:3001"
+    command: node index.mjs
+    depends_on:
+    - "graphql-engine"
 volumes:
   db_data:
 

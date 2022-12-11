@@ -62,8 +62,9 @@ function App() {
       clearTimeout(timer);
     }
     const url = 'https://rarbg.to/rssdd.php?category=2;18;41;49';
+    const feedUrl = 'http://localhost:3001/feed?url=' + encodeURIComponent(url);
     setSyncing(true);
-    const response = await fetch(url);
+    const response = await fetch(feedUrl);
     const rssData = await response.text();
     const xml = new XMLParser({
       ignoreAttributes: false,
@@ -107,7 +108,8 @@ function App() {
   });
 
   useEffect(() => {
-    fetchAndSyncRssFeed();
+    // delay a few seconds to prevent race condition with fetching existing items
+    setTimeout(fetchAndSyncRssFeed, 3000);
   }, []);
 
   return (
